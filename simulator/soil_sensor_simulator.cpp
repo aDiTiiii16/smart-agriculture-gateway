@@ -1,4 +1,6 @@
 #include <iostream>
+#include <thread>
+#include <chrono>
 using namespace std;
 
 string getMoistureState(int moisture) {
@@ -12,20 +14,19 @@ string getMoistureState(int moisture) {
 
 int main() {
 
-    int probe0 = 25;
-    int probe1 = 55;
-    int probe2 = 80;
+    int probe0 = 45;
 
     cout << "Smart Agriculture Soil Moisture Simulator\n\n";
 
-    cout << "Probe 0: " << probe0 << "% - "
-         << getMoistureState(probe0) << endl;
+    for (int i = 0; i < 5; i++) {
 
-    cout << "Probe 1: " << probe1 << "% - "
-         << getMoistureState(probe1) << endl;
+        cout << "Probe 0: " << probe0 << "% - "
+             << getMoistureState(probe0) << endl;
 
-    cout << "Probe 2: " << probe2 << "% - "
-         << getMoistureState(probe2) << endl;
+        probe0 -= 5;
+
+        this_thread::sleep_for(chrono::seconds(2));
+    }
 
     return 0;
 }
